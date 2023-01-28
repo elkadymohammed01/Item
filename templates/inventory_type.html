@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Mange Items
+{% endblock %}
+
+{% block title_bar %}
+    Items / Mange Items
+{% endblock %}
+{% block content %}
+    <div>
+        <div class="alert alert-success nav-link collapsed " data-bs-target="#form-add-nav"
+                data-bs-toggle="collapse" href="#" aria-expanded="false">
+            <h3 class="m-0 p-0">
+                    <i class="bi bi-slack"></i> Add Task
+            </h3>
+        </div>
+        <div class="card m-2">
+            <form id="form-add-nav" class="collapse m-3" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <div class="row text-center w-100 p-2">
+                    <button type="submit" class="btn btn-primary w-25">Add Task</button>
+                </div>
+            </form>
+        </div>
+
+        <section class="section dashboard">
+            <div class="col-lg-12">
+                <div class="row">
+
+                {% for inv in inventory_type%}
+                    <div class="col-xxl-6 col-md-6">
+                          <div class="card info-card sales-card">
+
+                                <div class="filter">
+                                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                            <li class="dropdown-header text-start">
+                                              <h6>Filter</h6>
+                                            </li>
+
+                                      </ul>
+                                </div>
+
+                                    <div class="card-header">
+                                          <h1 class="card-title m-0 p-0 ">{{ inv.name }}</h1>
+                                    </div>
+
+                          </div>
+                    </div>
+                {% endfor %}
+
+        </div>
+            </div>
+        </section>
+    </div>
+
+
+{% endblock %}
